@@ -27,6 +27,8 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion.git'
 Plugin 'elzr/vim-json'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'danro/rename.vim'
 Plugin 'tpope/vim-fugitive.git'
 
 " All of your Plugins must be added before the following line
