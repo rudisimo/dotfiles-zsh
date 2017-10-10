@@ -22,12 +22,13 @@ Switch your shell to ZSH:
 
     chsh -s /bin/zsh
 
-With git:
+Using git:
 
-    git clone https://github.com/rudisimo/dotfiles2.git ~/.dotfiles2 \
-        && ~/.dotfiles2/install.sh -a
+    git clone https://github.com/rudisimo/dotfiles-zsh.git ~/.dotfiles-zsh \
+    && ~/.dotfiles-zsh/install.sh -a
 
-Without git:
+Using cURL:
 
-    curl -#skfL https://github.com/rudisimo/dotfiles2/tarball/master | tar xzv --strip-components 1 -C ~/.dotfiles2 -- \
-        && ~/.dotfiles2/install.sh -a -d
+    mkdir ~/.dotfiles-zsh \
+    && curl -#skfL https://github.com/rudisimo/dotfiles-zsh/tarball/master | tar xzv --strip-components 1 -C ~/.dotfiles-zsh \
+    && ~/.dotfiles-zsh/install.sh -a -d
