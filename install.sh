@@ -115,7 +115,7 @@ if [ -n "$configure_vim" ]; then
     # install global configuration
     cp $BASEDIR/config/vim/vimrc $HOME/.vimrc
     # install Vundle plugins
-    vim +PluginInstall +PluginClean! +qall -n >/dev/null 2>&1
+    vim +PluginInstall +PluginClean! +qall >/dev/null
 fi
 
 exit 0

@@ -99,7 +99,7 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Berksfile,Thorfile,config.ru}    set ft=
 "Color
 set t_Co=256 "enable 256 colors
 syntax on "enable syntax coloring
-colorscheme molokai
+silent! colorscheme molokai
 
 " Backspace (allow you to backspace normally cause vim tries to help by preventing you)
 set backspace=indent,eol,start
