@@ -2,19 +2,21 @@
 
 This repository setups the terminal to "my" liking.
 
+## Requirements
+
+- [git](https://git-scm.com/downloads)
+
 ## Usage
 
 Command line arguments of installation script.
 
     ./install.sh:
-        -a  Install all configurations (-g -z -m -v)
-
         -g  Install git configuration
         -z  Install zsh configuration
         -m  Install tmux configuration
         -v  Install vim configuration
 
-        -d  Use curl instead of git-clone
+        -a  Install all configurations (-g -z -m -v)
 
 ## Installation
 
@@ -31,4 +33,4 @@ Using cURL:
 
     mkdir ~/.dotfiles-zsh \
     && curl -#skfL https://github.com/rudisimo/dotfiles-zsh/tarball/master | tar xzv --strip-components 1 -C ~/.dotfiles-zsh \
-    && ~/.dotfiles-zsh/install.sh -a -d
+    && ~/.dotfiles-zsh/install.sh -a
