@@ -22,7 +22,7 @@
     # Credit an author on the latest commit
     credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
     # Interactive rebase with the given number of latest commits
-    rb = "!r() { git rebase -i HEAD~$1; }; r"
+    rewrite = "!r() { git rebase -i HEAD~$1; }; r"
     # Removes an entire commit by SHA
     undo = "!u() { git rebase -p --onto $1^ $1; }; u"
     # Moves through your commit history
