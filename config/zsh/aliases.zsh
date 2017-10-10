@@ -20,7 +20,6 @@ alias map="xargs -n1"
 alias git="git --no-pager"
 
 # Configure ls as Ubuntu
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -alF'
-alias ls='ls --color=auto'
+alias l="ls -CF"
+alias la="ls -A"
+alias ll="ls -alF"
