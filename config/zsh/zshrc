@@ -106,9 +106,9 @@ export MANPAGER="less -X"
 export LESS="-X -R"
 
 # Update prompt every (n) seconds
-TMOUT=2
+TMOUT=5
 TRAPALRM() {
-  if [ "$WIDGET" != "complete-word" ]; then
+  if [ "$WIDGET" != "complete-word" ] && [ "$WIDGET" != "down-line-or-beginning-search" ] && [ "$WIDGET" != "up-line-or-beginning-search" ]; then
     zle reset-prompt
   fi
 }
