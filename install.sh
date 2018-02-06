@@ -91,11 +91,12 @@ if [ -n "$configure_zsh" ]; then
     # install global configuration
     cp $BASEDIR/config/zsh/zshrc $HOME/.zshrc
     # install custom theme
-    cp $BASEDIR/config/zsh/rudisimo.zsh-theme $HOME/.oh-my-zsh/themes/
+    download_once "rudisimo/powerlevel9k" "$HOME/.oh-my-zsh/custom/themes/powerlevel9k" $use_clone
     # install custom scripts
     cp $BASEDIR/config/zsh/aliases.zsh $HOME/.oh-my-zsh/custom/
     cp $BASEDIR/config/zsh/functions.zsh $HOME/.oh-my-zsh/custom/
     cp $BASEDIR/config/zsh/man.zsh $HOME/.oh-my-zsh/custom/
+    cp $BASEDIR/config/zsh/powerlevel9k.zsh $HOME/.oh-my-zsh/custom/
 fi
 
 # configure vim
@@ -121,4 +122,3 @@ if [ -n "$configure_tmux" ]; then
 fi
 
 exit 0
-

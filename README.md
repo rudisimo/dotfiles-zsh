@@ -4,7 +4,9 @@ This repository setups the terminal to "my" liking.
 
 ## Requirements
 
-- [git](https://git-scm.com/downloads)
+- [git][git]
+- [zsh][zsh]
+- [nerd-fonts][nerd-fonts]
 
 ## Usage
 
@@ -34,3 +36,7 @@ Using cURL:
     mkdir ~/.dotfiles-zsh \
     && curl -#skfL https://github.com/rudisimo/dotfiles-zsh/tarball/master | tar xzv --strip-components 1 -C ~/.dotfiles-zsh \
     && ~/.dotfiles-zsh/install.sh -a
+
+[git]: https://git-scm.com/downloads
+[zsh]: http://zsh.sourceforge.net/
+[nerd-fonts]: https://github.com/ryanoasis/nerd-fonts
