@@ -1,18 +1,21 @@
 #!/bin/bash -eu
 
-# checks if the given command is installed
+# Define base directory
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Checks if the given command is available
 is_installed() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# checks if the target can be configured
+# Checks if the target can be configured
 is_configurable() {
     if is_installed "$1"; then
         echo "1"
     fi
 }
 
-# downloads the given repository from github only once
+# Downloads the given repository from github only once
 download_once() {
     local repository="$1"
     local destination="$2"
@@ -37,13 +40,15 @@ fi
 # Parse command-line arguments
 OPTIND=1
 use_clone=1
+use_force=
 configure_git=
 configure_zsh=
 configure_vim=
 configure_tmux=
-while getopts "dgzvma" opt; do
+while getopts "dfgzvma" opt; do
 case "$opt" in
     d ) use_clone=;;
+    f ) use_force=1;;
 
     g ) configure_git=$(is_configurable "git");;
     z ) configure_zsh=$(is_configurable "zsh");;
@@ -61,25 +66,23 @@ case "$opt" in
 done
 shift $(($OPTIND-1))
 
-# Define base directory
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Confirm configuration consent
+if [ -z "${use_force}" ]; then
+    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+    echo "";
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 0
+    fi
+fi
 
-# configure git
+# Configure git
 if [ -n "$configure_git" ]; then
     echo "==> Configuring git..."
     # install global configuration
     cp $BASEDIR/config/git/gitconfig $HOME/.gitconfig
-    # configure user name
-    echo -n "Enter your name and press [ENTER]: "
-    read git_name
-    git config --global user.name "$git_name"
-    # configure user email
-    echo -n "Enter your email and press [ENTER]: "
-    read git_email
-    git config --global user.email "$git_email"
 fi
 
-# configure zsh
+# Configure zsh
 if [ -n "$configure_zsh" ]; then
     echo "==> Configuring zsh..."
     # warn about shell usage
@@ -99,7 +102,7 @@ if [ -n "$configure_zsh" ]; then
     cp $BASEDIR/config/zsh/powerlevel9k.zsh $HOME/.oh-my-zsh/custom/
 fi
 
-# configure vim
+# Configure vim
 if [ -n "$configure_vim" ]; then
     echo "==> Configuring vim..."
     # download vundle
@@ -110,7 +113,7 @@ if [ -n "$configure_vim" ]; then
     vim +PluginInstall +PluginClean! +qall --not-a-term -n >/dev/null
 fi
 
-# configure tmux
+# Configure tmux
 if [ -n "$configure_tmux" ]; then
     echo "==> Configuring tmux..."
     # download tmux plugin manager
