@@ -18,6 +18,7 @@ alias map="xargs -n1"
 
 # Disable git pager
 alias git="git --no-pager"
+alias g="git"
 
 # Configure ls as Ubuntu
 alias l="ls -CF"
