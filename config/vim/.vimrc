@@ -22,13 +22,13 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'ervandew/supertab'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive.git'
+" Plugin 'tpope/vim-fugitive.git'
 Plugin 'easymotion/vim-easymotion.git'
-Plugin 'elzr/vim-json'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'danro/rename.vim'
 Plugin 'junegunn/fzf.git'
 Plugin 'sheerun/vim-polyglot.git'
+Plugin 'elzr/vim-json'
+Plugin 'leafgarland/typescript-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

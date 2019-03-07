@@ -49,7 +49,7 @@ function codepoint() {
 }
 
 # Fetch remote file and cat gzip output
-function zurl() {
+function zcaturl() {
     curl "$@" | zcat
 }
 

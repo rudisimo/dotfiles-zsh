@@ -49,6 +49,7 @@ while getopts "dfgzvma" opt; do
 case "$opt" in
     d ) use_clone=;;
     f ) use_force=1;;
+    b ) use_backup=1;;
 
     g ) configure_git=$(is_configurable "git");;
     z ) configure_zsh=$(is_configurable "zsh");;
@@ -67,19 +68,19 @@ done
 shift $(($OPTIND-1))
 
 # Confirm configuration consent
-if [ -z "${use_force}" ]; then
-    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-    echo "";
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        exit 0
-    fi
-fi
+#if [ -z "${use_force}" ]; then
+#    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+#    echo "";
+#    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+#        exit 0
+#    fi
+#fi
 
 # Configure git
 if [ -n "$configure_git" ]; then
     echo "==> Configuring git..."
     # install global configuration
-    cp $BASEDIR/config/git/gitconfig $HOME/.gitconfig
+    cp $BASEDIR/config/git/.gitconfig $HOME/.gitconfig
 fi
 
 # Configure zsh
@@ -92,9 +93,10 @@ if [ -n "$configure_zsh" ]; then
     # download oh-my-zsh
     download_once "robbyrussell/oh-my-zsh" "$HOME/.oh-my-zsh" $use_clone
     # install global configuration
-    cp $BASEDIR/config/zsh/zshrc $HOME/.zshrc
+    cp $BASEDIR/config/zsh/.zshrc $HOME/.zshrc
     # install custom theme
     download_once "rudisimo/powerlevel9k" "$HOME/.oh-my-zsh/custom/themes/powerlevel9k" $use_clone
+    # download_once "gangleri/pipenv" "$HOME/.oh-my-zsh/custom/plugins/pipenv" $use_clone
     # install custom scripts
     cp $BASEDIR/config/zsh/aliases.zsh $HOME/.oh-my-zsh/custom/
     cp $BASEDIR/config/zsh/functions.zsh $HOME/.oh-my-zsh/custom/
@@ -108,7 +110,7 @@ if [ -n "$configure_vim" ]; then
     # download vundle
     download_once "VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim" $use_clone
     # install global configuration
-    cp $BASEDIR/config/vim/vimrc $HOME/.vimrc
+    cp $BASEDIR/config/vim/.vimrc $HOME/.vimrc
     # install Vundle plugins
     vim +PluginInstall +PluginClean! +qall --not-a-term -n >/dev/null
 fi
@@ -116,12 +118,9 @@ fi
 # Configure tmux
 if [ -n "$configure_tmux" ]; then
     echo "==> Configuring tmux..."
-    # download tmux plugin manager
-    download_once "tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm" $use_clone
     # install global configuration
     cp $BASEDIR/config/tmux/tmux.conf $HOME/.tmux.conf
-    # install TPM plugins
-    $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
+    cp $BASEDIR/config/tmux/tmux.local.conf $HOME/.tmux.conf.local
 fi
 
 exit 0

@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(dotenv rake ruby aws git-prompt colorize zsh-syntax-highlighting)
+plugins=(dotenv git-prompt colorize zsh-syntax-highlighting)
 
 # User configuration
 
