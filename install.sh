@@ -95,7 +95,7 @@ if [ -n "$configure_zsh" ]; then
     # install global configuration
     cp $BASEDIR/config/zsh/.zshrc $HOME/.zshrc
     # install custom theme
-    download_once "rudisimo/powerlevel9k" "$HOME/.oh-my-zsh/custom/themes/powerlevel9k" $use_clone
+    download_once "romkatv/powerlevel10k" "$HOME/.oh-my-zsh/custom/themes/powerlevel9k" $use_clone
     # download_once "gangleri/pipenv" "$HOME/.oh-my-zsh/custom/plugins/pipenv" $use_clone
     # install custom scripts
     cp $BASEDIR/config/zsh/aliases.zsh $HOME/.oh-my-zsh/custom/
