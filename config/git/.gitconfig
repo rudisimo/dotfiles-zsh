@@ -1,0 +1,81 @@
+[alias]
+  # View the SHA, description, and history graph of the latest 20 commits
+  logs = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  # View the current working tree status using the short format
+  st = status -s
+  # Show the diff between the latest commit and the current state
+  diff = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+  # Pull in remote changes for the current repository and all its submodules
+  up = !"git pull; git submodule foreach git pull origin master"
+  # Clone a repository including all submodules
+  co = clone --recursive
+  # Commit shorthand
+  ci = commit
+  # Commit all changes
+  ca = !git add -A && git commit -av
+  # Switch to a branch, creating it if necessary
+  go = checkout -B
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  # Credit an author on the latest commit
+  credit = "!f() { git commit --amend --author \"$1\" -C HEAD; }; f"
+  # Interactive rebase with the given number of latest commits
+  rewrite = "!r() { git rebase -i HEAD~$1; }; r"
+  # Removes an entire commit by SHA
+  undo = "!u() { git rebase -p --onto $1^ $1; }; u"
+  # Moves through your commit history
+  prev = checkout HEAD^1
+  next = "!sh -c 'git log --reverse --pretty=%H master | awk \"/$(git rev-parse HEAD)/{getline;print}\" | xargs git checkout'"
+  # Switch and synchronize branch with origin
+  sync = "!sh -c 'git rev-parse --abbrev-ref HEAD | xargs git push -u ${1-origin}'"
+  refresh = "!r() { git fetch --prune; git checkout $1; git pull; }; r"
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = warn
+[core]
+  # Use custom `.gitignore` and `.gitattributes`
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  # Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
+  whitespace = space-before-tab,indent-with-non-tab,trailing-space
+  # Disable paging
+  pager = ""
+[color]
+  # Use colors in Git commands that are capable of colored output when outputting to the terminal
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[merge]
+  # Include summaries of merged commits in newly created merge commit messages
+  log = true
+[branch "master"]
+  # Use `origin` as the default remote on the `master` branch in all cases
+  remote = origin
+  merge = refs/heads/master
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+  insteadOf = "github:"
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+[push]
+  default = matching
