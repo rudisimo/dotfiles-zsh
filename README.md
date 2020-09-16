@@ -1,42 +1,36 @@
 # dotfiles-zsh
 
-This repository setups the terminal to "my" liking.
+This repository configures a POSIX-compatible shell, to my preferences.
+
+`SPDX-License-Identifier: MIT`
 
 ## Requirements
 
-- [git][git]
-- [zsh][zsh]
-- [nerd-fonts][nerd-fonts]
+- `curl`
+- `zsh`
 
-## Usage
+## Requirements
 
-Command line arguments of installation script.
+Update your shell:
 
-    ./install.sh:
-        -g  Install git configuration
-        -z  Install zsh configuration
-        -m  Install tmux configuration
-        -v  Install vim configuration
-
-        -a  Install all configurations (-g -z -m -v)
+    chsh -s `which zsh`
 
 ## Installation
 
-Switch your shell to ZSH:
-
-    chsh -s /bin/zsh
-
 Using git:
 
-    git clone https://github.com/rudisimo/dotfiles-zsh.git ~/.dotfiles-zsh \
-    && ~/.dotfiles-zsh/install.sh -a
+    git clone https://github.com/rudisimo/dotfiles-zsh.git ~/.dotfiles-zsh
+    ~/.dotfiles-zsh/install.sh
 
 Using cURL:
 
-    mkdir ~/.dotfiles-zsh \
-    && curl -#skfL https://github.com/rudisimo/dotfiles-zsh/tarball/master | tar xzv --strip-components 1 -C ~/.dotfiles-zsh \
-    && ~/.dotfiles-zsh/install.sh -a
+    mkdir ~/.dotfiles-zsh && curl -#skfL https://github.com/rudisimo/dotfiles-zsh/tarball/master | tar xzv --strip-components 1 -C ~/.dotfiles-zsh
+    ~/.dotfiles-zsh/install.sh
 
-[git]: https://git-scm.com/downloads
-[zsh]: http://zsh.sourceforge.net/
-[nerd-fonts]: https://github.com/ryanoasis/nerd-fonts
+Install one of the fonts in the `fonts` directory, according to your OS.
+
+Install one of the themes in the `themes` directory, according to your Terminal.
+
+## License
+
+This work is licensed under MIT.
