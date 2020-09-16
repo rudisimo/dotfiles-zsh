@@ -21,6 +21,6 @@ alias git="git --no-pager"
 alias g="git"
 
 # Configure ls as Ubuntu
-alias l="ls -CF"
-alias la="ls -A"
-alias ll="ls -alF"
+alias l="ls -CF --group-directories-first"
+alias la="ls -A --group-directories-first"
+alias ll="ls -avlF --group-directories-first"

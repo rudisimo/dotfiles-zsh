@@ -91,3 +91,14 @@ function upsearch() {
         done
     fi
 }
+
+# Fix file/folder permissions
+function fixup() {
+    directory="${PWD}"
+    if [ -n "$1" ]; then
+        directory="$(realpath $1)"
+    fi
+    echo "Fixing file permissions: $directory"
+    find "$directory" -type d -exec chmod 0755 {} \;
+    find "$directory" -type f -exec chmod 0644 {} \;
+}
