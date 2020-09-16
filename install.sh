@@ -33,7 +33,7 @@ setup_wsl=
 OPTIND=1
 while getopts "hcfdnpgw" opt; do
     case "$opt" in
-        d ) with_curl=1    ;;
+        c ) with_curl=1    ;;
         f ) with_force=1   ;;
         d ) with_dryrun=1  ;;
         n ) setup_nodenv=1 ;;
