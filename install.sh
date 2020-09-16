@@ -22,6 +22,7 @@ has_vim=$(is_configurable vim)
 has_tmux=$(is_configurable tmux)
 
 # Parse command-line arguments
+with_curl=
 with_force=
 with_dryrun=
 setup_nodenv=
@@ -30,8 +31,9 @@ setup_goenv=
 setup_wsl=
 
 OPTIND=1
-while getopts "hfdnpgw" opt; do
+while getopts "hcfdnpgw" opt; do
     case "$opt" in
+        d ) with_curl=1    ;;
         f ) with_force=1   ;;
         d ) with_dryrun=1  ;;
         n ) setup_nodenv=1 ;;
@@ -42,6 +44,7 @@ while getopts "hfdnpgw" opt; do
         h|\?) cat <<EOF
 Usage: $(basename $0)
   General:
+    -c    Use curl instead of git
     -f    Ignore warning message
     -d    Dry-run only
 
@@ -66,7 +69,7 @@ download_once() {
     then
         if [ ! -d "$dst" ]
         then
-            if [ -n "$has_git" ]
+            if [ -n "$has_git" ] && [ -z "$with_curl" ]
             then
                 git clone -q --depth 1 "https://github.com/${src}.git" $dst
             else
