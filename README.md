@@ -2,8 +2,6 @@
 
 This repository configures a POSIX-compatible shell to my liking.
 
-`SPDX-License-Identifier: MIT`
-
 ## Requirements
 
 - `curl`
@@ -35,3 +33,5 @@ Install one of the themes in the `themes` directory, according to your Terminal.
 ## License
 
 This work is licensed under MIT.
+
+`SPDX-License-Identifier: MIT`
