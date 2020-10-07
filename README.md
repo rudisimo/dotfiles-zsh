@@ -1,6 +1,6 @@
 # dotfiles-zsh
 
-This repository configures a POSIX-compatible shell, to my preferences.
+This repository configures a POSIX-compatible shell to my liking.
 
 `SPDX-License-Identifier: MIT`
 
@@ -11,7 +11,7 @@ This repository configures a POSIX-compatible shell, to my preferences.
 
 ## Requirements
 
-Update your shell:
+Update your shell to Zsh:
 
     chsh -s `which zsh`
 
