@@ -89,7 +89,7 @@ copy_file() {
     then
         if [ -e "$src" ]
         then
-            cp "$src" "$dst"
+            cp -v "$src" "$dst"
         fi
     fi
 }
@@ -110,8 +110,16 @@ if [ -n "$has_git" ]
 then
     echo "[INFO] Configuring git..."
 
-    # Install global configuration
-    copy_file "git/.gitconfig" $HOME/.gitconfig
+    # install global configuration
+    copy_file $BASEDIR/config/git/.gitconfig $HOME/.gitconfig
+
+    # add git user information
+    echo "==> Enter your Git user name:"
+    read git_user_name
+    git config --global user.name "$git_user_name"
+    echo "==> Enter your Git user email:"
+    read git_user_email
+    git config --global user.email "$git_user_email"
 fi
 
 # configure zsh
