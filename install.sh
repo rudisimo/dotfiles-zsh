@@ -187,8 +187,8 @@ if [ -n "$has_tmux" ]; then
     echo "[INFO] Configuring tmux..." >&2
 
     # install global configuration
-    copy_file $BASEDIR/config/tmux/tmux.conf $HOME/.tmux.conf
-    copy_file $BASEDIR/config/tmux/tmux.local.conf $HOME/.tmux.conf.local
+    copy_file $BASEDIR/config/tmux/.tmux.conf $HOME/.tmux.conf
+    copy_file $BASEDIR/config/tmux/.tmux.local.conf $HOME/.tmux.conf.local
 fi
 
 echo "[INFO] Done!" >&2
