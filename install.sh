@@ -114,12 +114,16 @@ then
     copy_file $BASEDIR/config/git/.gitconfig $HOME/.gitconfig
 
     # add git user information
-    echo "==> Enter your Git user name:"
-    read git_user_name
-    git config --global user.name "$git_user_name"
-    echo "==> Enter your Git user email:"
-    read git_user_email
-    git config --global user.email "$git_user_email"
+    if [ -z "$PS1" ]; then
+        echo "[WARN] This shell is not interactive" >&2
+    else
+        echo "==> Enter your Git user name:"
+        read git_user_name
+        git config --global user.name "$git_user_name"
+        echo "==> Enter your Git user email:"
+        read git_user_email
+        git config --global user.email "$git_user_email"
+    fi
 fi
 
 # configure zsh
