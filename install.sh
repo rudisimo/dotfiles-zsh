@@ -114,7 +114,7 @@ then
     copy_file $BASEDIR/config/git/.gitconfig $HOME/.gitconfig
 
     # add git user information
-    if [ -z "$PS1" ]; then
+    if [ -z "${PS1:-}" ]; then
         echo "[WARN] This shell is not interactive" >&2
     else
         echo "==> Enter your Git user name:"
