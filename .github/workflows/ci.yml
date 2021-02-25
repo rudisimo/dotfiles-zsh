@@ -58,12 +58,12 @@ jobs:
           cp .github/docker/Dockerfile-${{ matrix.type }} Dockerfile
           sed -i 's/@@IMAGE@@/${{ matrix.image }}/g' Dockerfile
 
-      - name: Run installer script
+      - name: Run local tests
         uses: ./
         with:
           entrypoint: /entrypoint-local.sh
 
-      - name: Run installer script (headless)
-        uses: ./
-        with:
-          entrypoint: /entrypoint-remote.sh
+      # - name: Run remote tests
+      #   uses: ./
+      #   with:
+      #     entrypoint: /entrypoint-remote.sh
