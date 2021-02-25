@@ -1,7 +1,7 @@
 FROM @@IMAGE@@
 
 RUN apt-get -y update && \
-    apt-get -y install curl git zsh vim tmux && \
+    apt-get -y install curl git zsh vim tmux
 RUN test -e /etc/locale.gen && cat /etc/locale.gen
 RUN test -e /etc/locale.conf && cat /etc/locale.conf
 
