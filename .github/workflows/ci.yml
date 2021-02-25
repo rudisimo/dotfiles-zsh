@@ -19,23 +19,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - image: debian:jessie
-          #   tag: debian-jessie
-          #   file: Dockerfile-debian
-          # - image: debian:latest
-          #   tag: debian-latest
-          #   file: Dockerfile-debian
-          # - image: ubuntu:xenial
-          #   tag: ubuntu-xenial
-          #   file: Dockerfile-debian
+          - image: debian:jessie
+            file: Dockerfile-debian
+          - image: debian:latest
+            file: Dockerfile-debian
+          - image: ubuntu:xenial
+            file: Dockerfile-debian
           - image: ubuntu:latest
-            tag: ubuntu-latest
             file: Dockerfile-debian
           # - image: centos:7
-          #   tag: centos-7
           #   file: Dockerfile-centos
           # - image: centos:latest
-          #   tag: centos-latest
           #   file: Dockerfile-centos
 
     steps:
@@ -49,3 +43,8 @@ jobs:
 
       - name: Run installer script
         uses: ./
+
+      - name: Run installer script (headless)
+        uses: ./
+        with:
+          entrypoint: /entrypoint-headless.sh
