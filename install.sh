@@ -156,7 +156,7 @@ debug_tmux() {
 
 configure_git() {
     if [[ -n "$git" ]]; then
-        true
+        [[ ${DEBUG-} -eq 1 ]] && debug_git
     else
         warn "git not found, skipping configuration"
     fi
@@ -164,7 +164,7 @@ configure_git() {
 
 configure_zsh() {
     if [[ -n "$zsh" ]]; then
-        true
+        [[ ${DEBUG-} -eq 1 ]] && debug_zsh
     else
         warn "zsh not found, skipping configuration"
     fi
@@ -172,7 +172,7 @@ configure_zsh() {
 
 configure_vim() {
     if [[ -n "$vim" ]]; then
-        true
+        [[ ${DEBUG-} -eq 1 ]] && debug_vim
     else
         warn "vim not found, skipping configuration"
     fi
@@ -180,7 +180,7 @@ configure_vim() {
 
 configure_tmux() {
     if [[ -n "$tmux" ]]; then
-        true
+        [[ ${DEBUG-} -eq 1 ]] && debug_tmux
     else
         warn "tmux not found, skipping configuration"
     fi
@@ -196,28 +196,24 @@ setup_colors
 # configure git, unless disabled
 if [[ ${NO_GIT-} -eq 0 ]]; then
     info "Configuring git ..."
-    [[ ${DEBUG-} -eq 1 ]] && debug_git
     configure_git
 fi
 
 # configure zsh, unless disabled
 if [[ ${NO_ZSH-} -eq 0 ]]; then
     info "Configuring zsh ..."
-    [[ ${DEBUG-} -eq 1 ]] && debug_zsh
     configure_zsh
 fi
 
 # configure vim, unless disabled
 if [[ ${NO_VIM-} -eq 0 ]]; then
     info "Configuring vim ..."
-    [[ ${DEBUG-} -eq 1 ]] && debug_vim
     configure_vim
 fi
 
 # configure tmux, unless disabled
 if [[ ${NO_TMUX-} -eq 0 ]]; then
     info "Configuring tmux ..."
-    [[ ${DEBUG-} -eq 1 ]] && debug_tmux
     configure_tmux
 fi
 
