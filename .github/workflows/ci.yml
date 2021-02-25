@@ -18,25 +18,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        env:
+        include:
           # - image: debian:jessie
           #   tag: debian-jessie
-          #   dockerfile: Dockerfile-debian
+          #   file: Dockerfile-debian
           # - image: debian:latest
           #   tag: debian-latest
-          #   dockerfile: Dockerfile-debian
+          #   file: Dockerfile-debian
           # - image: ubuntu:xenial
           #   tag: ubuntu-xenial
-          #   dockerfile: Dockerfile-debian
+          #   file: Dockerfile-debian
           - image: ubuntu:latest
             tag: ubuntu-latest
-            dockerfile: Dockerfile-debian
+            file: Dockerfile-debian
           # - image: centos:7
           #   tag: centos-7
-          #   dockerfile: Dockerfile-centos
+          #   file: Dockerfile-centos
           # - image: centos:latest
           #   tag: centos-latest
-          #   dockerfile: Dockerfile-centos
+          #   file: Dockerfile-centos
 
     steps:
       - name: Checkout the codebase
@@ -44,7 +44,7 @@ jobs:
 
       - name: Configure environment
         run: |
-          cp .github/docker/${{ matrix.dockerfile }} Dockerfile
+          cp .github/docker/${{ matrix.file }} Dockerfile
           sed -i 's/@@IMAGE@@/${{ matrix.image }}/g' Dockerfile
 
       - name: Run installer script
