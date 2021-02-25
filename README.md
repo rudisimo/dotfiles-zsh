@@ -18,7 +18,7 @@ Update your shell to Zsh:
 Using cURL:
 
 ```bash
-curl -s https://raw.githubusercontent.com/rudisimo/dotfiles-zsh/master/install.sh | bash -s -v
+curl -s https://raw.githubusercontent.com/rudisimo/dotfiles-zsh/master/install.sh?flush_cache=True | bash -s -- -v
 ```
 
 Using git:
