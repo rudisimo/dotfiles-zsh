@@ -15,16 +15,17 @@ Update your shell to Zsh:
 
 ## Installation
 
-Using git:
-
-    $ git clone https://github.com/rudisimo/dotfiles-zsh.git ~/.dotfiles-zsh
-    $ ~/.dotfiles-zsh/install.sh
-
 Using cURL:
 
-    $ mkdir ~/.dotfiles-zsh
-    $ curl -#skfL https://github.com/rudisimo/dotfiles-zsh/tarball/master | tar xzv --strip-components 1 -C ~/.dotfiles-zsh
-    $ ~/.dotfiles-zsh/install.sh
+```bash
+curl -s https://raw.githubusercontent.com/rudisimo/dotfiles-zsh/master/install.sh | bash -s -v
+```
+
+Using git:
+
+```bash
+git clone https://github.com/rudisimo/dotfiles-zsh.git ~/.dotfiles-zsh && ~/.dotfiles-zsh/install.sh
+```
 
 Install one of the fonts in the `fonts` directory, according to your OS.
 
