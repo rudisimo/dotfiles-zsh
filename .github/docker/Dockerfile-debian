@@ -3,8 +3,5 @@ FROM @@IMAGE@@
 RUN apt-get -y update && \
     apt-get -y install curl git zsh vim tmux
 
-ADD .github/docker/entrypoint.sh /entrypoint.sh
-ADD .github/docker/entrypoint-headless.sh /entrypoint-headless.sh
-RUN chmod +x /entrypoint.sh /entrypoint-headless.sh
-
-ENTRYPOINT [ "/entrypoint.sh" ]
+ADD .github/docker/entrypoint* /
+RUN chmod +x /entrypoint*

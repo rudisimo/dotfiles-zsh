@@ -12,25 +12,48 @@ defaults:
 
 jobs:
   test:
-    name: Test on ${{matrix.image }}
+    name: Test on ${{ matrix.label }}
     runs-on: ubuntu-18.04
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - image: debian:jessie
+          - label: Debian (8)
+            image: debian:jessie
             file: Dockerfile-debian
-          - image: debian:latest
+
+          - label: Debian (9)
+            image: debian:stretch
             file: Dockerfile-debian
-          - image: ubuntu:xenial
+
+          - label: Debian (latest)
+            image: debian:latest
             file: Dockerfile-debian
-          - image: ubuntu:latest
+
+          - label: Ubuntu (16.04)
+            image: ubuntu:xenial
             file: Dockerfile-debian
-          - image: centos:7
-            file: Dockerfile-centos
-          - image: centos:latest
-            file: Dockerfile-centos
+
+          - label: Ubuntu (18.04)
+            image: ubuntu:bionic
+            file: Dockerfile-debian
+
+          - label: Ubuntu (latest)
+            image: ubuntu:latest
+            file: Dockerfile-debian
+
+          - label: CentOS (7)
+            image: centos:7
+            file: Dockerfile-redhat
+          
+          - label: CentOS (8)
+            image: centos:8
+            file: Dockerfile-redhat
+
+          - label: CentOS (latest)
+            image: centos:latest
+            file: Dockerfile-redhat
 
     steps:
       - name: Checkout the codebase
@@ -43,8 +66,10 @@ jobs:
 
       - name: Run installer script
         uses: ./
+        with:
+          entrypoint: /entrypoint-local.sh
 
       - name: Run installer script (headless)
         uses: ./
         with:
-          entrypoint: /entrypoint-headless.sh
+          entrypoint: /entrypoint-remote.sh
