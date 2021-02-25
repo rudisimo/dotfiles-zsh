@@ -21,43 +21,41 @@ jobs:
         include:
           - label: Debian (8)
             image: debian:jessie
-            file: Dockerfile-debian
+            type: debian
 
-          - label: Debian (latest)
-            image: debian:latest
-            file: Dockerfile-debian
+          - label: Debian (9)
+            image: debian:stretch
+            type: debian
 
-          - label: Ubuntu (16.04)
+          - label: Debian (10)
+            image: debian:buster
+            type: debian
+
+          - label: Ubuntu (16.04 LTS)
             image: ubuntu:xenial
-            file: Dockerfile-debian
+            type: debian
 
-          - label: Ubuntu (18.04)
+          - label: Ubuntu (18.04 LTS)
             image: ubuntu:bionic
-            file: Dockerfile-debian
+            type: debian
 
-          - label: Ubuntu (latest)
-            image: ubuntu:latest
-            file: Dockerfile-debian
+          - label: Ubuntu (20.04 LTS)
+            image: ubuntu:focal
+            type: debian
 
           - label: CentOS (7)
             image: centos:7
-            file: Dockerfile-redhat
+            type: redhat
           
           - label: CentOS (8)
             image: centos:8
-            file: Dockerfile-redhat
-
-          - label: CentOS (latest)
-            image: centos:latest
-            file: Dockerfile-redhat
+            type: redhat
 
     steps:
-      - name: Checkout the codebase
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - name: Configure environment
         run: |
-          cp .github/docker/${{ matrix.file }} Dockerfile
+          cp .github/docker/Dockerfile-${{ matrix.type }} Dockerfile
           sed -i 's/@@IMAGE@@/${{ matrix.image }}/g' Dockerfile
 
       - name: Run installer script
