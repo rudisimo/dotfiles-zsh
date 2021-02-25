@@ -23,10 +23,6 @@ jobs:
             image: debian:jessie
             file: Dockerfile-debian
 
-          - label: Debian (9)
-            image: debian:stretch
-            file: Dockerfile-debian
-
           - label: Debian (latest)
             image: debian:latest
             file: Dockerfile-debian
