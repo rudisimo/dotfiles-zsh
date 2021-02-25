@@ -1,0 +1,10 @@
+FROM @@IMAGE@@
+
+RUN yum -y update && \
+    yum -y install curl git zsh vim tmux
+
+ADD .github/docker/entrypoint.sh /entrypoint.sh
+ADD .github/docker/entrypoint-headless.sh /entrypoint-headless.sh
+RUN chmod +x /entrypoint.sh /entrypoint-headless.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]

@@ -27,10 +27,10 @@ jobs:
             file: Dockerfile-debian
           - image: ubuntu:latest
             file: Dockerfile-debian
-          # - image: centos:7
-          #   file: Dockerfile-centos
-          # - image: centos:latest
-          #   file: Dockerfile-centos
+          - image: centos:7
+            file: Dockerfile-centos
+          - image: centos:latest
+            file: Dockerfile-centos
 
     steps:
       - name: Checkout the codebase
