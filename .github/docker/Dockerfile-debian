@@ -2,8 +2,8 @@ FROM @@IMAGE@@
 
 RUN apt-get -y update && \
     apt-get -y install curl git zsh vim tmux
-RUN test -e /etc/locale.gen && cat /etc/locale.gen
-RUN test -e /etc/locale.conf && cat /etc/locale.conf
+RUN test -e /etc/locale.gen && cat /etc/locale.gen || true
+RUN test -e /etc/locale.conf && cat /etc/locale.conf || true
 
 #test -e /etc/locale.conf || sudo localectl set-locale LANG=en_US.UTF-8
 
