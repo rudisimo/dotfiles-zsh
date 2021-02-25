@@ -17,19 +17,14 @@ jobs:
     container: ${{ matrix.container }}
 
     strategy:
+      fail-fast: false
       matrix:
         container:
           - debian:jessie
-          - debian:stretch
-          - debian:bullseye
           - debian:latest
-          - ubuntu:trusty
           - ubuntu:xenial
-          - ubuntu:bionic
           - ubuntu:latest
-          - centos:6
           - centos:7
-          - centos:8
           - centos:latest
 
     steps:
