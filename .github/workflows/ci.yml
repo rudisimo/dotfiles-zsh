@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   test:
-    name: Test
+    name: Test on ${{matrix.container }}
     runs-on: ubuntu-18.04
     container: ${{ matrix.container }}
 
@@ -24,15 +24,15 @@ jobs:
           - debian:latest
           - ubuntu:xenial
           - ubuntu:latest
-          - centos:7
-          - centos:latest
+          # - centos:7
+          # - centos:latest
 
     steps:
       - name: Checkout the codebase
         uses: actions/checkout@v2
 
-      # - name: Install dependencies
-      #   run: |
+      - name: Install dependencies
+        run: sudo apt-get -y install curl
 
       - name: Run installer script
         run: ./install.sh -d
