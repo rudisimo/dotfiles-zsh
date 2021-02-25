@@ -12,30 +12,40 @@ defaults:
 
 jobs:
   test:
-    name: Test on ${{matrix.container }}
+    name: Test on ${{matrix.image }}
     runs-on: ubuntu-18.04
-    container: ${{ matrix.container }}
 
     strategy:
       fail-fast: false
       matrix:
-        container:
-          - debian:jessie
-          - debian:latest
-          - ubuntu:xenial
-          - ubuntu:latest
-          # - centos:7
-          # - centos:latest
+        env:
+          # - image: debian:jessie
+          #   tag: debian-jessie
+          #   dockerfile: Dockerfile-debian
+          # - image: debian:latest
+          #   tag: debian-latest
+          #   dockerfile: Dockerfile-debian
+          # - image: ubuntu:xenial
+          #   tag: ubuntu-xenial
+          #   dockerfile: Dockerfile-debian
+          - image: ubuntu:latest
+            tag: ubuntu-latest
+            dockerfile: Dockerfile-debian
+          # - image: centos:7
+          #   tag: centos-7
+          #   dockerfile: Dockerfile-centos
+          # - image: centos:latest
+          #   tag: centos-latest
+          #   dockerfile: Dockerfile-centos
 
     steps:
       - name: Checkout the codebase
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: sudo apt-get -y install curl
+      - name: Configure environment
+        run: |
+          cp .github/docker/${{ matrix.dockerfile }} Dockerfile
+          sed -i 's/@@IMAGE@@/${{ matrix.image }}/g' Dockerfile
 
       - name: Run installer script
-        run: ./install.sh -d
-
-      - name: Run installer script (stdin)
-        run: curl -s file://$PWD/install.sh | bash -s -- -d
+        uses: ./

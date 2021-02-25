@@ -1,0 +1,9 @@
+FROM @@IMAGE@@
+
+RUN apt-get -y update && \
+    apt-get -y install curl git
+
+ADD .github/docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
