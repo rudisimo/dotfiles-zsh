@@ -27,29 +27,29 @@ jobs:
             image: debian:stretch
             type: debian
 
-          # - label: Debian (10)
-          #   image: debian:buster
-          #   type: debian
+          - label: Debian (10)
+            image: debian:buster
+            type: debian
 
-          # - label: Ubuntu (16.04 LTS)
-          #   image: ubuntu:xenial
-          #   type: debian
+          - label: Ubuntu (16.04 LTS)
+            image: ubuntu:xenial
+            type: debian
 
-          # - label: Ubuntu (18.04 LTS)
-          #   image: ubuntu:bionic
-          #   type: debian
+          - label: Ubuntu (18.04 LTS)
+            image: ubuntu:bionic
+            type: debian
 
-          # - label: Ubuntu (20.04 LTS)
-          #   image: ubuntu:focal
-          #   type: debian
+          - label: Ubuntu (20.04 LTS)
+            image: ubuntu:focal
+            type: debian
 
-          # - label: CentOS (7)
-          #   image: centos:7
-          #   type: redhat
+          - label: CentOS (7)
+            image: centos:7
+            type: redhat
           
-          # - label: CentOS (8)
-          #   image: centos:8
-          #   type: redhat
+          - label: CentOS (8)
+            image: centos:8
+            type: redhat
 
     steps:
       - uses: actions/checkout@v2
