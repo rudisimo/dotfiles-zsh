@@ -1,10 +1,9 @@
 FROM @@IMAGE@@
 
-RUN apt-get update -y -qq >/dev/null && \
-    apt-get install -y -qq locales curl git zsh vim tmux >/dev/null && \
-    sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen && \
-    test -e /etc/locale.gen && cat /etc/locale.gen && \
-    locale-gen
+RUN apt-get -y -qq update >/dev/null && \
+    apt-get -y -qq install locales curl git zsh vim tmux >/dev/null
+RUN test -e /etc/locale.gen && \
+    sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen && locale-gen
 
 ADD .github/docker/entrypoint* /
 RUN chmod +x /entrypoint*

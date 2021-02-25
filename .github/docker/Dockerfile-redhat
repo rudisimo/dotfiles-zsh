@@ -1,7 +1,7 @@
 FROM @@IMAGE@@
 
-RUN yum -y update && \
-    yum -y install curl git zsh vim tmux
+RUN yum -y -q update >/dev/null && \
+    yum -y -q install curl git zsh vim tmux >/dev/null
 
 ADD .github/docker/entrypoint* /
 RUN chmod +x /entrypoint*
