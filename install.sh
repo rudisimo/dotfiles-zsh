@@ -3,8 +3,11 @@
 set -Eeuo pipefail
 trap cleanup SIGINT SIGTERM ERR EXIT
 
-BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+BASEDIR=
 STAGEDIR=$(mktemp -d -q)
+if [ -n "$BASH_SOURCE" ]; then
+    BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+fi
 
 #####################################################
 # Core functions
