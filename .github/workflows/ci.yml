@@ -31,6 +31,10 @@ jobs:
             image: debian:buster
             type: debian
 
+          - label: Debian (11)
+            image: debian:bullseye
+            type: debian
+
           - label: Ubuntu (16.04 LTS)
             image: ubuntu:xenial
             type: debian
@@ -43,13 +47,17 @@ jobs:
             image: ubuntu:focal
             type: debian
 
+          - label: Ubuntu (22.04 LTS)
+            image: ubuntu:jammy
+            type: debian
+
           - label: CentOS (7)
             image: centos:7
             type: redhat
           
-          - label: CentOS (8)
-            image: centos:8
-            type: redhat
+          # - label: CentOS (8)
+          #   image: centos:8
+          #   type: redhat
 
     steps:
       - uses: actions/checkout@v2
@@ -58,12 +66,12 @@ jobs:
           cp .github/docker/Dockerfile-${{ matrix.type }} Dockerfile
           sed -i 's/@@IMAGE@@/${{ matrix.image }}/g' Dockerfile
 
-      - name: Run local tests
+      - name: Run local installation tests
         uses: ./
         with:
           entrypoint: /entrypoint-local.sh
 
-      # - name: Run remote tests
+      # - name: Run remote installation tests
       #   uses: ./
       #   with:
       #     entrypoint: /entrypoint-remote.sh
