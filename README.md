@@ -2,27 +2,23 @@
 
 [![CI](https://github.com/rudisimo/dotfiles-zsh/actions/workflows/ci.yml/badge.svg)](https://github.com/rudisimo/dotfiles-zsh/actions/workflows/ci.yml)
 
-Configures [my](https://github.com/rudisimo) POSIX-compatible shells.
-
 ## Requirements
 
-Install and update your shell to Zsh.
+Install and update your shell to `zsh`.
 
+    sudo apt update -y
+    sudo apt install -y zsh
     chsh -s `which zsh`
 
 ## Installation
 
 Using Git:
 
-```bash
-[ -d ~/.dotfiles-zsh ] && git -C ~/.dotfiles-zsh pull || git clone https://github.com/rudisimo/dotfiles-zsh ~/.dotfiles-zsh && ~/.dotfiles-zsh/install.sh -d
-```
+    git clone https://github.com/rudisimo/dotfiles-zsh ~/.dotfiles-zsh && sh ~/.dotfiles-zsh/install.sh -v
 
 Using cURL (possibly [unsafe](https://security.stackexchange.com/questions/213401/is-curl-something-sudo-bash-a-reasonably-safe-installation-method)):
 
-```bash
-curl -s https://raw.githubusercontent.com/rudisimo/dotfiles-zsh/master/install.sh | bash -s -- -d
-```
+    curl -sfL https://raw.githubusercontent.com/rudisimo/dotfiles-zsh/master/install.sh | sh -s -- -v --force
 
 Install one of the fonts according to your OS, from the `fonts` directory.
 
@@ -30,4 +26,4 @@ Install one of the themes according to your terminal, from the `themes` director
 
 ## License
 
-This work is licensed under the [MIT](LICENSE.txt) license.
+This work is licensed under the [MIT](LICENSE) license.
