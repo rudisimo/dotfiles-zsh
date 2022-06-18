@@ -1,0 +1,9 @@
+# configure umask
+umask 022
+
+# # Use pyenv binaries
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH=$HOME/.local/bin:$PYENV_ROOT/bin:/usr/local/sbin:/usr/local/bin:$PATH
+
+# # configure pyenv paths
+# eval "$(pyenv init --path)"
