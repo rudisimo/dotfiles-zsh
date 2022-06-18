@@ -2,4 +2,4 @@
 
 set -Eeuo pipefail
 echo "Installing ${GITHUB_REPOSITORY-'dotfiles-zsh'} via LOCAL execution (${GITHUB_SHA-'HEAD'})"
-./install.sh -d
+sh ./install.sh -v
