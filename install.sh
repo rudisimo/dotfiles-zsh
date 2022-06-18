@@ -15,16 +15,17 @@ if [ -t 0 ]; then
 fi
 
 # Options
-OPT_USECURL=
 OPT_FORCE=
-OPT_VERBOSE=
 OPT_QUIET=
+OPT_VERBOSE=
 OPT_DRYRUN=
 OPT_COLOR=1
 OPT_GIT=1
 OPT_ZSH=1
 OPT_VIM=1
 OPT_TMUX=1
+OPT_USECURL=
+OPT_BRANCH="master"
 
 # Colors
 NC=
@@ -114,7 +115,7 @@ download() {
     local branch=${3-master}
 
     if confirm_user_action; then
-        info "  download: $repository_url -> $destination"
+        info "  download: $repository_url ($branch) -> $destination"
         if confirm_should_run; then
             if [ -z "$OPT_USECURL" ]; then
                 [ -d $destination ] && git -C $destination pull || git clone -q --depth 1 --branch $branch "${repository_url}.git" $destination
@@ -301,12 +302,16 @@ while [ "$#" -gt 0 ]; do
         -q | --quiet   ) OPT_QUIET=1 ;;
         -v | --verbose ) OPT_VERBOSE=1 ;;
         --dry          ) OPT_DRYRUN=1 ;;
-        --use-curl     ) OPT_USECURL=1 ;;
         --no-color     ) OPT_COLOR= ;;
         --no-git       ) OPT_GIT= ;;
         --no-zsh       ) OPT_ZSH= ;;
         --no-vim       ) OPT_VIM= ;;
         --no-tmux      ) OPT_TMUX= ;;
+        --use-curl     ) OPT_USECURL=1 ;;
+        -b | --branch  )
+            OPT_BRANCH="$1"
+            shift
+            ;;
         -p | --prefix  )
             DESTDIR="$1"
             shift
@@ -330,7 +335,7 @@ fi
 if [ -z "$BASEDIR" ]; then
     info "downloading dotfiles-zsh ..."
     BASEDIR=$STAGEDIR/dotfiles-zsh
-    download_once rudisimo/dotfiles-zsh $BASEDIR
+    download_once rudisimo/dotfiles-zsh $BASEDIR $OPT_BRANCH
 fi
 
 # configure environment
